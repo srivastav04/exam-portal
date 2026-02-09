@@ -1,0 +1,153 @@
+/* App.css — Minimalist, no hover effects */
+
+:root {
+  --bg: #f7f7f7;
+  --card: #ffffff;
+  --text: #0f1720;
+  --muted: #4b5563;
+  --border: #e6e9ef;
+  --accent: #0f1720;
+  --error: #b00020;
+}
+
+/* Reset / base */
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+/* Page centering */
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+
+/* Form container */
+.form {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Row */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Label */
+.label {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1;
+}
+
+/* Input */
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  transition: none; /* explicitly no transitions/hover effects */
+}
+
+/* Keep an accessible focus state (not a hover effect) */
+.input:focus {
+  border-color: #c8ccd6;
+  box-shadow: 0 0 0 3px rgba(11, 14, 19, 0.04);
+}
+
+/* Button */
+.submit-btn {
+  display: inline-block;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: none; /* no hover/transition effects */
+}
+
+/* Focus for button (accessible) */
+.submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(11, 14, 19, 0.06);
+}
+
+/* Disabled state */
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error & status */
+.error {
+  color: var(--error);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.status {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Small screens */
+@media (max-width: 420px) {
+  .form {
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  .input,
+  .submit-btn {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+}
