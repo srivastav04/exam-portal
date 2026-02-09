@@ -4,7 +4,17 @@ import os from "os";
 
 export const getResults = async (req, res) => {
   try {
-    const response = await pool.query("SELECT * FROM results ");
+    const response = await pool.query("SELECT * FROM results "); // Without redis
+
+    // const cacheKey = "results";
+    // const data = await client.get(cacheKey);
+    // if (data) {
+    //   console.log("In cache data");
+    //   return res.status(200).json(JSON.parse(data));
+    // }
+    //await client.setEx(cacheKey, 60, JSON.stringify(response.rows));
+    // console.log("Set in Redis");
+
     res.status(200).json(response.rows);
   } catch (err) {
     console.log("ERROR while getting results", err);
@@ -75,5 +85,18 @@ export const createTable = async (req, res) => {
     });
   } catch (err) {
     console.log("ERROR while creating table", err);
+  }
+};
+
+export const deleteResults = async (req, res) => {
+  const { hallTicket } = req.body;
+  try {
+    await pool.query(`DELETE FROM results WHERE hallTicket = $1`, [hallTicket]);
+
+    res.json({
+      message: "Successfully deleted",
+    });
+  } catch (err) {
+    console.log("ERROR while deleting results", err);
   }
 };
